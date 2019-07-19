@@ -5,12 +5,12 @@ echo "BackupScript Has Started!"
 mkdir -p backup
 cd backup
 
-currentDate=$(date -d today '+%Y-%m-%d')
-mkdir -p $currentDate
+number_of_backups="Backup#$(echo */ | wc -w)"
+mkdir -p $number_of_backups
 cd ..
 
 for file in $(ls *.txt); do
-cp -n $file ./backup/$currentDate
-echo $file "Has been backed up into" $currentDate
+cp -n $file ./backup/$number_of_backups
+echo $file "Has been backed up into" $number_of_backups
 done
 

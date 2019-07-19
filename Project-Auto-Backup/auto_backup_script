@@ -1,0 +1,31 @@
+#!/bin/bash
+# Backup all the files in the current directory to a new one
+
+# Initialize all Constants
+PATH_TO_BACKUPS="Backups"
+
+# Inform the user that the script has started
+echo "Backing up..."
+
+# Check if a backups folder exists, if not then create one
+mkdir -p $PATH_TO_BACKUPS
+
+# Generate a new backup name and ID
+new_backup_name="Backup"
+new_backup_id=$(ls -l $PATH_TO_BACKUPS | grep "^d" | wc -l)
+new_backup="$new_backup_name#$new_backup_id"
+
+# Create a new backup folder inside the backups folder
+path_to_backup="$PATH_TO_BACKUPS/$new_backup"
+mkdir -p $path_to_backup
+
+# Copy all the files inside the current folder into the backups folder
+# For every file, inform the user that its been backed up
+for file in $(ls *.txt)
+do
+	cp $file  $path_to_backup
+	echo $file "Has been backed up into" $path_to_backup
+done
+
+# Inform the user that the script has ended
+echo "Done backing up"

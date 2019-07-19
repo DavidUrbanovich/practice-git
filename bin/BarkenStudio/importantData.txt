@@ -1,7 +1,0 @@
-Statistics:
-	Accidents - 53
-	New Workers - 04
-	Overall Cost - $126,000
-
-Comments:
-	19/07/2019 - Nothing To Report Today

@@ -5,12 +5,12 @@ echo "BackupScript Has Started!"
 mkdir -p backup
 cd backup
 
-number_of_backups="Backup#$(echo */ | wc -w)"
-mkdir -p $number_of_backups
+filename="Backup#$(ls -l | grep '^d' | wc -l)"
+mkdir -p $filename
 cd ..
 
-for file in $(ls *.txt); do
-cp -n $file ./backup/$number_of_backups
-echo $file "Has been backed up into" $number_of_backups
+for file in $(ls *.txt) 
+do
+	cp -n $file ./backup/$filename
+	echo $file "Has been backed up into" $filename
 done
-

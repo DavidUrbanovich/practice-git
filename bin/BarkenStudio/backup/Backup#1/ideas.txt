@@ -1,0 +1,6 @@
+Gameplay:
+	1 - The ability to shoot
+	2 - The ability to fly
+
+UI:
+	1 - No hud at all

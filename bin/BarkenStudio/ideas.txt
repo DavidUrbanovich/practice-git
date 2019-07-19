@@ -1,0 +1,9 @@
+Gameplay:
+	1 - The ability to shoot
+	2 - The ability to fly
+
+UI:
+	1 - No hud at all
+
+Story:
+	1 - Someone who decided he wants to be the best at doing nothing

@@ -1,0 +1,16 @@
+#!/bin/bash
+
+echo "BackupScript Has Started!"
+echo "Which script would you like to backup?"
+read script
+
+mkdir -p backup
+cd backup
+currentDate=$(date -d today '+%Y-%m-%d')
+mkdir -p $currentDate
+cd ..
+cp $script ./backup/$currentDate
+
+
+
+

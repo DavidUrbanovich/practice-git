@@ -1,5 +1,4 @@
-Product Patchnotes:
+Project Patchnotes:
 
-Version 0.00 - Start of the project.
-Version 0.01a - We have added the option to do nothing.
-Version 0.01b - We have removed the option to do nothing.
+Version 0.01 - The project can copy all .txt files from the location the script was opened in and
+               copy them all to a new location provided in config.txt which can be changed.

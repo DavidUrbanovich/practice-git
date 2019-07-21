@@ -16,12 +16,17 @@ practice, but that will not be a problem considering the many more projects to c
 
 Current Known Projects:
 
-	Project-Auto-Backup -> This project has been my first one and had gone many changes while I've
-						   been trying to decide what to do in it.
+	>---------------------------------------------------------------------------<
+	Project-Auto-Backup
+	
+		This project has been my first one and had gone many changes while I've
+		been trying to decide what to do in it.
 
-						   At its current state, the project holds a script which when called will
-						   backup all the files and directories of the directory the script was
-						   called from into a new folder inside a configurable path inside config.
+		At its current state, the project holds a script which when called will
+		backup all the files and directories of the directory the script was
+		called from into a new folder inside a configurable path inside config.
 
-						   In other words a backup script to save data in case of it being lost,
-						   corrupted or accidently changed.
+		In other words a backup script to save data in case of it being lost,
+		corrupted or accidently changed. 
+	>---------------------------------------------------------------------------<
+

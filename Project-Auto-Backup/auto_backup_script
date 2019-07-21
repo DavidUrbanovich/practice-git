@@ -1,31 +1,57 @@
 #!/bin/bash
 # Backup all the files in the current directory to a new one
 
-# Initialize all Constants
-PATH_TO_BACKUPS="Backups"
+set -u
+set -e
 
-# Inform the user that the script has started
+#>----------------------------------------------------------
+# Return the required value inside config.txt
+# Globals:
+#   None
+# Arguments:
+#   $1 - Name of the required value
+# Returns:
+#   value
+#>----------------------------------------------------------
+get_data_from_config(){
+	local value=$(cat config.txt | grep "^$1" | cut -f 2 -d "=")
+	echo $value
+}
+
+#>----------------------------------------------------------
+# Return the ID of the new backup folder by finding the amount
+# of current folders inside the given path
+# Globals:
+#   None
+# Arguments:
+#   $1 - Path to folders
+# Returns:
+#   id
+#>----------------------------------------------------------
+get_new_backup_id(){
+	local id=$(ls -l $1 | grep "^d" | wc -l)
+	echo "Backup#$id"
+}
+
 echo "Backing up..."
 
-# Check if a backups folder exists, if not then create one
-mkdir -p $PATH_TO_BACKUPS
+# Create a new backups folder if one doesnt exists at the given path
+backups_path=$(get_data_from_config "PATH_TO_BACKUPS")
+mkdir -p $backups_path
 
-# Generate a new backup name and ID
-new_backup_name="Backup"
-new_backup_id=$(ls -l $PATH_TO_BACKUPS | grep "^d" | wc -l)
-new_backup="$new_backup_name#$new_backup_id"
+# Generate a new backup ID
+new_backup=$(get_new_backup_id $(get_data_from_config "PATH_TO_BACKUPS"))
 
 # Create a new backup folder inside the backups folder
-path_to_backup="$PATH_TO_BACKUPS/$new_backup"
-mkdir -p $path_to_backup
+backup_path="$backups_path/$new_backup"
+mkdir -p $backup_path
 
 # Copy all the files inside the current folder into the backups folder
 # For every file, inform the user that its been backed up
 for file in $(ls *.txt)
 do
-	cp $file  $path_to_backup
-	echo $file "Has been backed up into" $path_to_backup
+	cp $file $backup_path
+	echo $file "Has been backed up into" $backup_path
 done
 
-# Inform the user that the script has ended
 echo "Done backing up"

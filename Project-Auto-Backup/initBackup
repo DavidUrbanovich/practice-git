@@ -4,6 +4,9 @@
 set -u
 set -e
 
+# Initalize Constants
+PATH_TO_CONFIG=$(find $(dirname $0) -name "config.txt")
+
 #>----------------------------------------------------------
 # Return the required value inside config.txt
 # Globals:
@@ -14,7 +17,7 @@ set -e
 #   value
 #>----------------------------------------------------------
 get_data_from_config(){
-	local value=$(cat config.txt | grep "^$1" | cut -f 2 -d "=")
+	local value=$(cat < $PATH_TO_CONFIG | grep "^$1" | cut -f 2 -d "=")
 	echo $value
 }
 
@@ -33,25 +36,19 @@ get_new_backup_id(){
 	echo "Backup#$id"
 }
 
-echo "Backing up..."
 
 # Create a new backups folder if one doesnt exists at the given path
 backups_path=$(get_data_from_config "PATH_TO_BACKUPS")
 mkdir -p $backups_path
 
 # Generate a new backup ID
-new_backup=$(get_new_backup_id $(get_data_from_config "PATH_TO_BACKUPS"))
+new_backup_name=$(get_new_backup_id $(get_data_from_config "PATH_TO_BACKUPS"))
 
 # Create a new backup folder inside the backups folder
-backup_path="$backups_path/$new_backup"
+backup_path="$backups_path/$new_backup_name"
 mkdir -p $backup_path
 
 # Copy all the files inside the current folder into the backups folder
-# For every file, inform the user that its been backed up
-for file in $(ls *.txt)
-do
-	cp $file $backup_path
-	echo $file "Has been backed up into" $backup_path
-done
-
-echo "Done backing up"
+# Inform the user of the location of the backup
+cp -rn $(ls) $backup_path
+echo "Files have been backed up into" $backup_path

@@ -1,2 +1,1 @@
-BACKUP_FOLDER_NAME=Backup
-PATH_TO_BACKUPS=/g/Backups
+PATH_TO_BACKUPS=/g/Backups 
